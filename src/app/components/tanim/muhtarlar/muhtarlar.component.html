@@ -1,0 +1,7 @@
+﻿<select class="form-control" (blur)="onTouched()" (change)="onChange($event.target.value)" [formControl]="fm"
+    [ngClass]="{ 'is-invalid': (control || fm.submitted )  && fm.errors }">
+    <option *ngFor="let item of model" [value]="item.id"> {{item.Adi+' '+item.Soyadi}} </option>
+</select>
+<div *ngIf="(control || fm.invalid ) && fm.errors" class="invalid-feedback">
+    <div *ngIf="fm.errors.required">Zorunlu Alan</div>
+</div>

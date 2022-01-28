@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="col-sm-12">
+    <app-card [title]="'Menü Tanımları'">
+      <div class="row">
+        <div class="col-sm-12 col-md-12 col-xl-12">
+          <div class="btn-group" role="group" data-toggle="tooltip" data-placement="top" title=""
+            data-original-title=".btn-xlg">
+            <button type="button" (click)="addRecord()" class="btn btn-success tanimIslemBtn">
+              <i class="icofont icofont-plus"></i>Yeni
+            </button>
+            <button type="button" (click)="openMyModal('effect-4',2)" [disabled]="dataservis.buttonDisabled"
+              class="btn dropdown-disabled btn-outline-primary tanimIslemBtn">
+              <i class="icofont icofont-edit"></i>Düzenle</button>
+            <button type="button" (click)="deleteRecord()" [disabled]="dataservis.buttonDisabled"
+              class="btn dropdown-disabled btn-outline-danger tanimIslemBtn">
+              <i class="icofont icofont-ui-delete"></i>Sil
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-12 col-xl-12">
+        <div class="row">
+          <dx-data-grid #gridRef style="height: 490px;overflow-y: hidden !important;" id="gridContainer"
+            [dataSource]="rows" [allowColumnReordering]="true" [rowAlternationEnabled]="true" [showBorders]="true"
+            (onContentReady)="contentReady($event)" [selectedRowKeys]="[]"
+            (onSelectionChanged)="onSelectionChanged($event)">
+            <dxo-filter-row [visible]="true"></dxo-filter-row>
+            <dxo-selection mode="single"></dxo-selection>
+            <dxo-paging (pageIndexChange)="pageChange($event)" [pageSize]="pageSize"></dxo-paging>
+
+            <dxo-search-panel [visible]="true" [highlightCaseSensitive]="true"></dxo-search-panel>
+            <dxo-group-panel [visible]="true"></dxo-group-panel>
+            <dxo-grouping [autoExpandAll]="false"></dxo-grouping>
+            <dxi-column dataField="id" caption="id" dataType="number" alignment="right" [width]="100">
+            </dxi-column>
+            <dxi-column dataField="MenuAdi" caption="Menü Tanımı" dataType="string"></dxi-column>
+            <dxo-export [enabled]="true"></dxo-export>
+            <dxo-header-filter [groupInterval]="1000"></dxo-header-filter>
+            <dxo-header-filter [visible]="true" [allowSearch]="true"></dxo-header-filter>
+          </dx-data-grid>
+        </div>
+      </div>
+    </app-card>
+  </div>
+</div>
+<ng2-toasty [position]="position"></ng2-toasty>
+<app-modal-animation id="modalekran" [modalID]="'effect-4'" [modalClass]="'md-effect-4  modal-lg'">
+  <app-editmenu></app-editmenu>
+</app-modal-animation>

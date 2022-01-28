@@ -1,0 +1,136 @@
+<div class="row ">
+    <div class="col-sm-12 col-md-12 col-xl-12">
+      <h3 class="ng-tns-c8-4">Rol Yetki Düzenleme</h3>
+      <div class="row">
+        <div class="col-sm-12 col-md-12 col-xl-12">
+
+            <perfect-scrollbar class="overflow-container" style="width: 100%;height: 530px;padding:15px;">
+              
+                <div class="form-group" style="padding-top: 10px;">
+                    <div class="row nopadding">
+                      <div class="col">
+                        <div class="input-group">
+                          <span class="input-group-addon" id="adi">Rol Adı</span>
+                          <input type="text" class="form-control" id="adi" [(ngModel)]="role.title" maxlength="100" 
+                            placeholder="Rol Adı" />
+                        </div>
+                      </div>
+                    </div>
+                    <span class="md-line"></span>
+                  </div>
+
+                  
+
+
+                <div class="form-group" style="padding-top: 10px; margin-bottom: 0px;">
+                  <div class="row nopadding">
+                    <div class="col">
+                      <h6 style="padding-top: 10px;">
+                        Rol Yetkileri:
+                    </h6>
+                    </div>
+                    <div class="col">
+                      <div class="input-group">                         
+                        <input type="text" class="form-control" id="adi" [(ngModel)]="search" maxlength="100" 
+                          placeholder="Rol Arama" />
+                      </div>
+                    </div>
+                  </div>
+                  <hr style="margin:0;">
+                  <span class="md-line"></span>
+                </div>
+                
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="md-tabs md-left-tabs">
+                      <ngb-tabset >
+                        <ngb-tab *ngFor="let main of rolePermissions; index as indx" title="{{main.GrupName}}" >
+                          <ng-template ngbTabContent>
+                            <div class="m-t-15">
+                              <div class="container" style="margin-left: 25px;">
+                                <div class="row">
+                                  <div class="col-12">
+                                    <mat-accordion>
+                                      <mat-expansion-panel *ngFor="let _rootRole of main._children |filter:search">
+                                        <mat-expansion-panel-header>
+                                          <mat-panel-title>
+                                            <!-- <span>
+                                              <mat-checkbox [(ngModel)]="_rootRole.isSelected"
+                                                  (change)="isSelectedChanged($event, _rootRole)"
+                                                  [disabled]="_rootRole.isCoreRole">{{ _rootRole.title }}</mat-checkbox> 
+                                          </span> -->
+                                          <span class="custom-control custom-checkbox">
+                                          <input type="checkbox" class="custom-control-input" id="main{{_rootRole.id}}" [disabled]="_rootRole.isCoreRole" [(ngModel)]="_rootRole.isSelected" [checked]="_rootRole.isSelected" (change)="isSelectedChanged($event, _rootRole,indx)">
+                                                              <label class="custom-control-label" for="main{{_rootRole.id}}">{{ _rootRole.title }}</label>
+                                          </span>
+                                          </mat-panel-title>
+                                          <mat-panel-description style="display:inline-grid !important; margin-right: 30px!important; flex-grow: 0 !important; margin-top: 5px !important;">
+                                            Alt Roller için Tıklayın
+                                          </mat-panel-description>
+                                        </mat-expansion-panel-header>
+                                        <div class=""
+                                                      *ngFor="let _childRole of _rootRole._children |filter:search" style="padding-left:25px;">
+                                                      
+                                                          <!-- <mat-checkbox [(ngModel)]="_childRole.isSelected"
+                                                              (change)="isSelectedChanged($event, _childRole)"
+                                                              [disabled]="role.isCoreRole">{{ _childRole.title }}</mat-checkbox> -->
+                                                      <span class="custom-control custom-checkbox">
+                                                              <input type="checkbox" class="custom-control-input" id="child{{_childRole.id}}" [disabled]="role.isCoreRole" [(ngModel)]="_childRole.isSelected" [checked]="_childRole.isSelected" (change)="isSelectedChanged($event, _childRole,indx)">
+                                                              <label class="custom-control-label" for="child{{_childRole.id}}">{{ _childRole.title }}</label>
+                                                      </span>
+                                                  </div>
+                                      </mat-expansion-panel>                            
+                                    </mat-accordion>
+                                        <!-- <div class="anadiv">
+                                          <div *ngFor="let _rootRole of main._children">
+                
+                                              <div class="mainpermission">
+                                                  <span>
+                                                      <mat-checkbox [(ngModel)]="_rootRole.isSelected"
+                                                          (change)="isSelectedChanged($event, _rootRole)"
+                                                          [disabled]="role.isCoreRole">{{ _rootRole.title }}</mat-checkbox> 
+                                                  </span>
+                                              
+                                              </div>
+                                              <div class="d-flex align-items-center subpermission">
+                                                  <div class=""
+                                                      *ngFor="let _childRole of _rootRole._children |filter:search" style="padding-left:25px;">
+                                                      <span>
+                                                          <mat-checkbox [(ngModel)]="_childRole.isSelected"
+                                                              (change)="isSelectedChanged($event, _childRole)"
+                                                              [disabled]="role.isCoreRole">{{ _childRole.title }}</mat-checkbox>
+                                                      </span>
+                                                  </div>
+                                              </div>
+                                              <hr style="margin: 0px 0px 9px 0;">
+                                          </div>
+                                        </div> -->
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </ng-template>
+                        </ngb-tab>
+                      </ngb-tabset>
+                    </div>
+                  </div>                 
+                </div>
+
+
+            </perfect-scrollbar>
+            <div class="row">
+              <div class="col-sm-12 col-md-12 col-xl-12" style="margin-bottom:10px;padding: 0px 30px 0 30px;">
+                <button type="submit" class="btn btn-danger md-close sagaYasla" (click)="onSubmit()" [disabled]="dataservis.loading">Kaydet
+                  <span *ngIf="dataservis.loading" class="spinner-border spinner-border-sm mr-1"></span>
+                </button>
+                <button type="button" (click)="closeMyModal()" style="margin-right:10px;"
+                  class="btn btn-default md-close sagaYasla">Vazgeç</button>
+              </div>
+            </div>
+   
+        </div>
+      </div>
+      <button (click)="closeMyModal()" aria-label="Close" class="md-close-btn"><i
+          class="icofont icofont-ui-close"></i></button>
+    </div>
+  </div>

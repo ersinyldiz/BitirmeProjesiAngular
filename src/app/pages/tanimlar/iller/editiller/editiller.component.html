@@ -1,0 +1,42 @@
+﻿<div class="row">
+  <div class="col-sm-12 col-md-12 col-xl-12">
+    <h3 class="ng-tns-c8-4">İl Tanımları </h3>
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-xl-12">
+        <form [formGroup]="form" (ngSubmit)="kaydet()" autocomplete="off">
+          <perfect-scrollbar class="overflow-container" style="width: 100%;height: 100px;padding:15px;">
+         
+            <div class="form-group">
+              <div class="row nopadding">
+                <div class="col">
+                  <div class="input-group">
+                    <span class="input-group-addon" id="IlAdi">İl Adı</span>
+                    <input type="text" class="form-control" id="IlAdi" formControlName="IlAdi"
+                      maxlength="255" [ngClass]="{ 'is-invalid': (control || f.IlAdi.submitted ) && f.IlAdi.errors }"
+                      placeholder="İl Adı" />
+                    <div style="margin-left:15px;" *ngIf="(control || f.IlAdi.invalid ) && f.IlAdi.errors"
+                      class="invalid-feedback" style="text-align:left">
+                      <div *ngIf="f.IlAdi.errors.required">Zorunlu Alan</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <span class="md-line"></span>
+            </div>
+          </perfect-scrollbar>
+          <div class="row">
+            <div class="col-sm-12 col-md-12 col-xl-12" style="margin-bottom:10px;padding: 0px 30px 0 30px;">
+              <button type="submit" class="btn btn-danger md-close sagaYasla" [disabled]="dataservis.loading">Kaydet
+                <span *ngIf="dataservis.loading" class="spinner-border spinner-border-sm mr-1"></span>
+              </button>
+              <button type="button" (click)="closeMyModal()" style="margin-right:10px;"
+                class="btn btn-default md-close sagaYasla">Vazgeç</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <button (click)="closeMyModal()" aria-label="Close" class="md-close-btn"><i
+        class="icofont icofont-ui-close"></i></button>
+  </div>
+</div>

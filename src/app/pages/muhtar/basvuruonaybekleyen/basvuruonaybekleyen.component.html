@@ -1,0 +1,64 @@
+﻿<div class="row">
+  <div class="col-sm-12">
+    <app-card [title]="'Muhtar Onayı Bekleyen Başvurular'">
+      <div class="row">
+        <div class="col-sm-12 col-md-12 col-xl-12" style="margin-bottom:10px;">
+          <div class="btn-group" role="group" data-toggle="tooltip" data-placement="top" title=""
+            data-original-title=".btn-xlg">
+            <button type="button" (click)="onayla()" [disabled]="dataservis.buttonDisabled"
+              class="btn dropdown-disabled btn-outline-success tanimIslemBtn">
+              <i class="icofont icofont-tick-boxed"></i>Seçilen Başvuruları Onayla
+            </button>
+            <button type="button" (click)="reddet()" [disabled]="dataservis.buttonDisabled"
+              class="btn dropdown-disabled btn-outline-danger tanimIslemBtn">
+              <i class="icofont icofont-close-squared-alt"></i>Seçilen Başvuruları İptal Et/Sil
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-12 col-md-12 col-xl-12">
+        <div class="row">
+          <dx-data-grid id="gridPerformansTakip" #gridPerformansTakip *ngIf="rows.length>0 ? true : false"
+            style="height: 490px;overflow-y: hidden !important;" [dataSource]="rows" [allowColumnReordering]="true"
+            [rowAlternationEnabled]="true" [showBorders]="true" (onContentReady)="contentReady($event)"
+            [selectedRowKeys]="[]" [allowColumnResizing]="true" [columnHidingEnabled]="true" [wordWrapEnabled]="true"
+            (onSelectionChanged)="onSelectionChanged($event)">
+            <dxo-filter-row [visible]="true"></dxo-filter-row>
+            <dxo-selection mode="multiple"></dxo-selection>
+            <dxo-paging [pageSize]="dataservis.size"></dxo-paging>
+            <dxo-pager [showInfo]="true" [showNavigationButtons]="true" [showPageSizeSelector]="true"></dxo-pager>
+            <dxo-search-panel [visible]="true" [highlightCaseSensitive]="false">
+            </dxo-search-panel>
+            <dxo-group-panel [visible]="true"></dxo-group-panel>
+            <dxo-grouping [contextMenuEnabled]="true" expandMode="rowClick"></dxo-grouping>
+            <dxo-column-chooser [enabled]="true" mode="select"></dxo-column-chooser>
+            <dxo-header-filter [groupInterval]="1000" [visible]="true" [allowSearch]="true">
+            </dxo-header-filter>
+            <dxo-export [enabled]="true"></dxo-export>
+            <dxi-column dataField="SiraNo" [sortIndex]="0" sortOrder="desc" caption="S.N" dataType="number"
+              alignment="right" [width]="100"></dxi-column>
+            <dxi-column dataField="Durum" caption="Durum" [alignment]="'center'" [width]="100"
+              cellTemplate="tagCellTemplate"></dxi-column>
+            <dxi-column dataField="TcNo" caption="T.C Kimlik" dataType="string"></dxi-column>
+            <dxi-column dataField="Ad" caption="Adi" dataType="string">
+            </dxi-column>
+            <dxi-column dataField="Soyad" caption="Soyadi" dataType="string"></dxi-column>
+            <dxi-column dataField="Aciklama" caption="Açıklama" dataType="string"></dxi-column>
+            <dxi-column dataField="BasvuruTarih" caption="Tarih" dataType="datetime"></dxi-column>
+            <dxi-column dataField="IlAdi" caption="İl" dataType="string"></dxi-column>
+            <dxi-column dataField="IlceAdi" caption="İlçe" dataType="string"></dxi-column>
+            <dxi-column dataField="MahalleAdi" caption="Mahalle" dataType="string"></dxi-column>
+            <div *dxTemplate="let d of 'tagCellTemplate'">
+              <label style="width:100%"
+                class="label {{d.value==0 ? 'label-warning':d.value==1 ? 'label-success':d.value==2 ? 'label-danger' : 'label-warning'}}">{{d.value==0
+                ? 'Onay Bekliyor':d.value==1 ? 'Onaylandı' : d.value==2 ? 'Onaylanmadı' : d.value==3
+                ? 'Geri Gönderildi' : ''}}</label>
+            </div>
+          </dx-data-grid>
+        </div>
+      </div>
+    </app-card>
+  </div>
+</div>
+<ng2-toasty [position]="dataservis.toastposition"></ng2-toasty>

@@ -1,0 +1,21 @@
+﻿import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { ProfilComponent } from './profil.component';
+
+const routes: Routes = [
+  {
+    path: '',
+    component: ProfilComponent,
+    data: {
+      breadcrumb: 'Profil Bilgilerim ',
+      status: false
+    }
+  }
+];
+
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
+})
+
+export class ProfilRoutingModule { }

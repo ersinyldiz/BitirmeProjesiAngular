@@ -1,0 +1,46 @@
+aside.pcoded-slider.ng-sidebar {
+  top: 56px;
+}
+
+.slimscroll-wrapper, .scroll-window {
+  width: 100% !important;
+}
+
+.userlist-box {
+  &.show {
+    display: -webkit-box;
+  }
+  &.hide {
+    display: none;
+  }
+}
+.blink {
+  animation: blinker 1.5s linear infinite;
+  color: #1c87c9;
+  font-size: 30px;
+  font-weight: bold;
+  text-transform: uppercase;
+  }
+  @keyframes blinker {  
+  50% { opacity: 0; }
+  }
+  .basityuvarlak{
+    background-color: #fff;
+    border-radius: 5px;
+    width: 10px;
+    height: 10px;
+    float: left;
+    margin-top: 24px;
+    margin-right: 7px;
+    }
+    .aktifbirim{
+      background-color:#0073aa;
+    }
+    .birimBaslik{
+      font-weight: bold;
+    color: #0073aa;
+    border-bottom: 2px solid;
+    width: 100%;
+    padding-bottom: 10px;
+    }
+    

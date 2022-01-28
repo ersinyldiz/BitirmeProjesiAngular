@@ -1,0 +1,17 @@
+﻿<!--<select class="form-control" (blur)="onTouched()" (change)="onChange($event.target.value)" [formControl]="fm"
+    [ngClass]="{ 'is-invalid': (control || fm.submitted )  && fm.errors }">
+    <option *ngFor="let item of model" [value]="item.SiraNo"> {{item.MahalleAdi}} </option>
+</select>
+<div *ngIf="(control || fm.invalid ) && fm.errors" class="invalid-feedback">
+    <div *ngIf="fm.errors.required">Zorunlu Alan</div>
+</div>-->
+<dx-lookup [items]="model" displayExpr="MahalleAdi" valueExpr="SiraNo" (blur)="onTouched()"
+    (change)="onChange($event.target.value)" [formControl]="fm"
+    [ngClass]="{ 'is-invalid': (control || fm.submitted )  && fm.errors }">
+    <dxo-drop-down-options [closeOnOutsideClick]="true" [showTitle]="false">
+    </dxo-drop-down-options>
+</dx-lookup>
+<div *ngIf="(control || fm.invalid ) && fm.errors" class="invalid-feedback">
+    <div *ngIf="fm.errors.required">Zorunlu Alan</div>
+</div>
+

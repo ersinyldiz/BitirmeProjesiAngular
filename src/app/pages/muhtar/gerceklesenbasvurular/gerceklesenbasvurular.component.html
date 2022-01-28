@@ -1,0 +1,45 @@
+﻿<div class="row">
+  <div class="col-sm-12">
+    <app-card [title]="'Gerçekleşen Yardım Başvuruları'">
+      <div class="col-sm-12 col-md-12 col-xl-12">
+        <div class="row">
+          <dx-data-grid id="gridPerformansTakip" #gridPerformansTakip *ngIf="rows.length>0 ? true : false"
+            style="height: 490px;overflow-y: hidden !important;" [dataSource]="rows" [allowColumnReordering]="true"
+            [rowAlternationEnabled]="true" [showBorders]="true" (onContentReady)="contentReady($event)"
+            [allowColumnResizing]="true" [columnHidingEnabled]="true" [wordWrapEnabled]="true">
+            <dxo-filter-row [visible]="true"></dxo-filter-row>
+            <dxo-paging [pageSize]="dataservis.size"></dxo-paging>
+            <dxo-pager [showInfo]="true" [showNavigationButtons]="true" [showPageSizeSelector]="true"></dxo-pager>
+            <dxo-search-panel [visible]="true" [highlightCaseSensitive]="false">
+            </dxo-search-panel>
+            <dxo-group-panel [visible]="true"></dxo-group-panel>
+            <dxo-grouping [contextMenuEnabled]="true" expandMode="rowClick"></dxo-grouping>
+            <dxo-column-chooser [enabled]="true" mode="select"></dxo-column-chooser>
+            <dxo-header-filter [groupInterval]="1000" [visible]="true" [allowSearch]="true">
+            </dxo-header-filter>
+            <dxo-export [enabled]="true"></dxo-export>
+            <dxi-column dataField="SiraNo" [sortIndex]="0" sortOrder="desc" caption="S.N" dataType="number"
+              alignment="right" [width]="100"></dxi-column>
+            <dxi-column dataField="Durum" caption="Durum" [alignment]="'center'" [width]="170"
+              cellTemplate="tagCellTemplate"></dxi-column>
+            <dxi-column dataField="YardimEdenAdSoyad" caption="Yardim Yapan" dataType="string"></dxi-column>
+            <dxi-column dataField="YardimEdenTelefon" caption="Yardim Yapan Tel." dataType="string"></dxi-column>
+            <dxi-column dataField="TcNo" caption="T.C Kimlik" dataType="string"></dxi-column>
+            <dxi-column dataField="Ad" caption="Adi" dataType="string">
+            </dxi-column>
+            <dxi-column dataField="Soyad" caption="Soyadi" dataType="string"></dxi-column>
+            <dxi-column dataField="Aciklama" caption="Açıklama" dataType="string"></dxi-column>
+            <dxi-column dataField="BasvuruTarih" caption="Tarih" dataType="datetime"></dxi-column>
+            <dxi-column dataField="IlAdi" caption="İl" dataType="string"></dxi-column>
+            <dxi-column dataField="IlceAdi" caption="İlçe" dataType="string"></dxi-column>
+            <dxi-column dataField="MahalleAdi" caption="Mahalle" dataType="string"></dxi-column>
+            <div *dxTemplate="let d of 'tagCellTemplate'">
+              <label style="width:100%" class="label label-success">Yardım Gerçekleştirildi.</label>
+            </div>
+          </dx-data-grid>
+        </div>
+      </div>
+    </app-card>
+  </div>
+</div>
+<ng2-toasty [position]="dataservis.toastposition"></ng2-toasty>

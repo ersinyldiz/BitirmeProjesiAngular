@@ -1,0 +1,146 @@
+﻿<div class="row">
+  <div class="col-sm-12 col-md-12 col-xl-12">
+    <h3 class="ng-tns-c8-4">Kullanıcı Tanımları </h3>
+    <div class="row">
+      <div class="col-sm-12 col-md-12 col-xl-12">
+        <form [formGroup]="form" (ngSubmit)="kaydet()" autocomplete="off">
+          <perfect-scrollbar class="overflow-container" style="width: 100%;height: 500px;padding:15px;">
+            <div class="form-group">
+              <div class="row nopadding">
+                <div class="col">
+                  <div class="input-group">
+                    <span class="input-group-addon" id="UserName">Kullanıcı Adı</span>
+                    <input type="text" class="form-control" id="UserName" formControlName="UserName" maxlength="50"
+                      [ngClass]="{ 'is-invalid': (control || f.UserName.submitted ) && f.UserName.errors }"
+                      placeholder="Kullanıcı Adı" />
+                    <div style="margin-left:15px;" *ngIf="(control || f.UserName.invalid ) && f.UserName.errors"
+                      class="invalid-feedback" style="text-align:left">
+                      <div *ngIf="f.UserName.errors.required">Zorunlu Alan</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="input-group">
+                    <span class="input-group-addon" id="PassWord">Şifresi</span>
+                    <input type="password" class="form-control" id="PassWord" formControlName="PassWord" maxlength="50"
+                      [ngClass]="{ 'is-invalid': (control || f.PassWord.submitted ) && f.PassWord.errors }"
+                      placeholder="Şifresi" />
+                    <div style="margin-left:15px;" *ngIf="(control || f.PassWord.invalid ) && f.PassWord.errors"
+                      class="invalid-feedback" style="text-align:left">
+                      <div *ngIf="f.PassWord.errors.required">Zorunlu Alan</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <span class="md-line"></span>
+            </div>
+            <div class="form-group">
+              <div class="row nopadding">
+                <div class="col">
+                  <div class="input-group">
+                    <span class="input-group-addon" id="Adi">Adı</span>
+                    <input type="text" class="form-control" id="Adi" formControlName="Adi" maxlength="20"
+                      [ngClass]="{ 'is-invalid': (control || f.Adi.submitted ) && f.Adi.errors }" placeholder="Adı" />
+                    <div style="margin-left:15px;" *ngIf="(control || f.Adi.invalid ) && f.Adi.errors"
+                      class="invalid-feedback" style="text-align:left">
+                      <div *ngIf="f.Adi.errors.required">Zorunlu Alan</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="input-group">
+                    <span class="input-group-addon" id="Soyadi">Soyadı</span>
+                    <input type="text" class="form-control" id="Soyadi" formControlName="Soyadi" maxlength="20"
+                      [ngClass]="{ 'is-invalid': (control || f.Soyadi.submitted ) && f.Soyadi.errors }"
+                      placeholder="Soyadı" />
+                    <div style="margin-left:15px;" *ngIf="(control || f.Soyadi.invalid ) && f.Soyadi.errors"
+                      class="invalid-feedback" style="text-align:left">
+                      <div *ngIf="f.Soyadi.errors.required">Zorunlu Alan</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <span class="md-line"></span>
+            </div>
+            <div class="form-group">
+              <div class="row nopadding">
+                <div class="col">
+                  <div class="input-group">
+                    <span class="input-group-addon" id="TCKimlikNo">TC Kimlik No</span>
+                    <input type="text" class="form-control" id="TCKimlikNo" formControlName="TCKimlikNo" maxlength="11"
+                      placeholder="TCKimlikNo" />
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="input-group">
+                    <span class="input-group-addon" id="GSM">GSM</span>
+                    <input type="text" class="form-control" id="GSM" formControlName="GSM" maxlength="20"
+                      placeholder="GSM" />
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="input-group">
+                    <span class="input-group-addon" id="Email">Email</span>
+                    <input type="text" class="form-control" id="Email" formControlName="Email" maxlength="50"
+                      [ngClass]="{ 'is-invalid': (control || f.Email.submitted ) && f.Email.errors }"
+                      placeholder="Email" />
+                    <div style="margin-left:15px;" *ngIf="(control || f.Email.invalid ) && f.Email.errors"
+                      class="invalid-feedback" style="text-align:left">
+                      <div *ngIf="f.Email.errors.required">Zorunlu Alan</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <span class="md-line"></span>
+            </div>
+            <div class="form-group">
+              <div class="row nopadding">
+                <div class="col">
+                  <div class="input-group">
+                    <span class="input-group-addon" id="Rol">Yetki Rolü</span>
+                    <app-roltanimlari class="form-control" style="padding:0;border:none;" formControlName="Rol" id="Rol"
+                      [(control)]="control"></app-roltanimlari>
+
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="input-group">
+                    <span class="input-group-addon" id="MenuRol">Menü Rolü</span>
+                    <app-menutanimlari class="form-control" style="padding:0;border:none;" formControlName="MenuRol"
+                      id="MenuRol" [(control)]="control"></app-menutanimlari>
+                  </div>
+                </div>
+              </div>
+              <span class="md-line"></span>
+            </div>
+            <div class="form-group">
+              <div class="row nopadding">
+                <div class="col">
+                  <div class="input-group">
+                    <span class="input-group-addon" id="Aktif">Durum</span>
+                    <select class="form-control" id="Aktif" formControlName="Aktif">
+                      <option value="1">Aktif</option>
+                      <option value="0">Pasif</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <span class="md-line"></span>
+            </div>
+          </perfect-scrollbar>
+          <div class="row">
+            <div class="col-sm-12 col-md-12 col-xl-12" style="margin-bottom:10px;padding: 0px 30px 0 30px;">
+              <button type="submit" class="btn btn-danger md-close sagaYasla" [disabled]="dataservis.loading">Kaydet
+                <span *ngIf="dataservis.loading" class="spinner-border spinner-border-sm mr-1"></span>
+              </button>
+              <button type="button" (click)="closeMyModal()" style="margin-right:10px;"
+                class="btn btn-default md-close sagaYasla">Vazgeç</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <button (click)="closeMyModal()" aria-label="Close" class="md-close-btn"><i
+        class="icofont icofont-ui-close"></i></button>
+  </div>
+</div>

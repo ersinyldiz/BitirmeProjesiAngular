@@ -1,0 +1,53 @@
+﻿<div class="row">
+  <div class="col-sm-12">
+    <app-card [title]="'Mahalle Tanımları'">
+      <div class="row">
+        <div class="col-sm-12 col-md-12 col-xl-12" style="margin-bottom:10px;">
+          <div class="btn-group" role="group" data-toggle="tooltip" data-placement="top" title=""
+            data-original-title=".btn-xlg">
+            <button type="button" (click)="openMyModal('effect-4',1)" class="btn btn-success tanimIslemBtn">
+              <i class="icofont icofont-plus"></i>Yeni
+            </button>
+            <button type="button" (click)="openMyModal('effect-4',2)" [disabled]="dataservis.buttonDisabled"
+              class="btn dropdown-disabled btn-outline-primary tanimIslemBtn">
+              <i class="icofont icofont-edit"></i>Düzenle
+            </button>
+            <button type="button" (click)="deleteRecord()" [disabled]="dataservis.buttonDisabled"
+              class="btn dropdown-disabled btn-outline-danger tanimIslemBtn">
+              <i class="icofont icofont-ui-delete"></i>Sil
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-12 col-xl-12">
+        <div class="row">
+          <dx-data-grid id="gridMahalle" #gridMahalle style="height: 490px;overflow-y: hidden !important;"
+            [dataSource]="rows" [allowColumnReordering]="true" [rowAlternationEnabled]="true" [showBorders]="true"
+            (onContentReady)="contentReady($event)" [selectedRowKeys]="[]"
+            [allowColumnResizing]="true" [columnHidingEnabled]="true" [wordWrapEnabled]="true"
+            (onSelectionChanged)="onSelectionChanged($event)">
+            <dxo-filter-row [visible]="true"></dxo-filter-row>
+            <dxo-selection mode="single"></dxo-selection>
+            <dxo-paging [pageSize]="dataservis.size"></dxo-paging>
+            <dxo-pager [showInfo]="true" [showNavigationButtons]="true" [showPageSizeSelector]="true"></dxo-pager>
+            <dxo-search-panel [visible]="true" [highlightCaseSensitive]="false"></dxo-search-panel>
+            <dxo-group-panel [visible]="true"></dxo-group-panel>
+            <dxo-grouping [contextMenuEnabled]="true" expandMode="rowClick"></dxo-grouping>
+            <dxo-column-chooser [enabled]="true" mode="select"></dxo-column-chooser>
+            <dxo-header-filter [groupInterval]="1000" [visible]="true" [allowSearch]="true"></dxo-header-filter>
+            <dxo-export [enabled]="true"></dxo-export>
+            <dxi-column dataField="SiraNo" caption="Sıra No" dataType="number" alignment="right" [width]="100"></dxi-column>
+            <dxi-column dataField="IlAdi" caption="İl Adı" dataType="string" ></dxi-column>
+            <dxi-column dataField="IlceAdi" caption="İlçe Adı" dataType="string"></dxi-column>
+            <dxi-column dataField="MahalleAdi" caption="Mahalle Adı" dataType="string"></dxi-column>
+            <dxi-column dataField="MuhtarAdSoyad" caption="Muhtar" dataType="string"></dxi-column>
+          </dx-data-grid>
+        </div>
+      </div>
+    </app-card>
+  </div>
+</div>
+<ng2-toasty [position]="dataservis.toastposition"></ng2-toasty>
+<app-modal-animation id="modalekran" [modalID]="'effect-4'" [modalClass]="'md-effect-4'">
+  <app-editmahalle></app-editmahalle>
+</app-modal-animation>

@@ -1,0 +1,85 @@
+<div class="row ">
+    <div class="col-sm-12 col-md-12 col-xl-12">
+      <h3 class="ng-tns-c8-4">Menü Yetki Düzenleme</h3>
+      <div class="row">
+        <div class="col-sm-12 col-md-12 col-xl-12">
+
+            <perfect-scrollbar class="overflow-container" style="width: 100%;height: 530px;padding:15px;">
+              
+                <div class="form-group" style="padding-top: 10px;">
+                    <div class="row nopadding">
+                      <div class="col">
+                        <div class="input-group">
+                          <span class="input-group-addon" id="adi">Menü Adı</span>
+                          <input type="text" class="form-control" [(ngModel)]="menuler.MenuAdi" id="adi"  maxlength="100" 
+                            placeholder="Menü Adı" />
+                        </div>
+                      </div>
+                    </div>
+                    <span class="md-line"></span>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="sub-title">Yetkiler</div>
+                      <div class="md-tabs md-left-tabs">
+                        <ngb-tabset >
+                          <ngb-tab *ngFor="let main of menuler.Permissions; index as indx" title="{{main.text}}" >
+                            <ng-template ngbTabContent>
+                              <div class="m-t-15">
+                                <div class="container" style="margin-left: 25px;">
+                                  <div class="row">
+                                    <div class="col-12">
+                                      <table class="table table-bordered" style="width: 580px; padding-left: 25px;">
+                                        <thead>
+                                          <tr>
+                                            <th scope="col">Sistem Menüsü</th>
+                                            <th scope="col" class="custom-checkbox" style="    text-align: center; padding-left: 40px;">
+                                              <input type="checkbox" class="custom-control-input" id="{{main.id}}" [(ngModel)]="main.selected" [checked]="main.selected" (change)="tumunuGuncelle($event,indx)">
+                                              <label class="custom-control-label" for="{{main.id}}"></label>
+                                            </th>
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                         
+                                          <tr *ngFor="let child of main.items">
+                                            <td>{{child.text}}</td>
+                                            <td>
+                                              <div class="custom-control custom-checkbox" style="text-align: center;">
+                                                  <input type="checkbox" class="custom-control-input" id="{{child.id}}" [(ngModel)]="child.selected" [checked]="child.selected" (change)="changed($event, child, main.id,indx)">
+                                                  <label class="custom-control-label" for="{{child.id}}"></label>
+                                              </div>
+                                            </td>
+                                            
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </ng-template>
+                          </ngb-tab>
+                        </ngb-tabset>
+                      </div>
+                    </div>                 
+                  </div>
+
+
+            </perfect-scrollbar>
+            <div class="row">
+              <div class="col-sm-12 col-md-12 col-xl-12" style="margin-bottom:10px;padding: 0px 30px 0 30px;">
+                <button type="submit" class="btn btn-danger md-close sagaYasla" (click)="onSubmit()" [disabled]="dataservis.loading">Kaydet
+                  <span *ngIf="dataservis.loading" class="spinner-border spinner-border-sm mr-1"></span>
+                </button>
+                <button type="button" (click)="closeMyModal()" style="margin-right:10px;"
+                  class="btn btn-default md-close sagaYasla">Vazgeç</button>
+              </div>
+            </div>
+   
+        </div>
+      </div>
+      <button (click)="closeMyModal()" aria-label="Close" class="md-close-btn"><i
+          class="icofont icofont-ui-close"></i></button>
+    </div>
+  </div>
